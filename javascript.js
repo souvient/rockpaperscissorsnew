@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 
 function getComputerChoice() {
     let randomOutcome = Math.floor(Math.random() * 3) + 1;
@@ -22,47 +19,80 @@ function getHumanChoice() {
 
 }
 
-function playRound(humanChoice, computerChoice) {
 
-    humanChoice = humanChoice.toLowerCase();
 
-    if (humanChoice === "rock" && computerChoice === "paper") {
-        computerScore++;
-        return "You lose! Paper beats rock!";
+    function playGame() {
+
+        let humanScore = 0;
+        let computerScore = 0;
+
+        function playRound(humanChoice, computerChoice) {
+
+            humanChoice = humanChoice.toLowerCase();
         
+            if (humanChoice === "rock" && computerChoice === "paper") {
+                computerScore++;
+                return "You lose! Paper beats rock!";
+                
+        
+            } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                computerScore++;
+                return "You lose! Scissors beat paper" 
+        
+            } else if (humanChoice === "scissors" && computerChoice === "rock") {
+                computerScore++;
+                return "You lose! Rock beats scissors";
+        
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                humanScore++;
+                return "You win! Scissors beat paper";
+        
+            
+        
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                humanScore++;
+                return "You win! Paper beats rock";
+        
+            } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                humanScore++;
+                return "You win! Rock beats scissors";
+        
+            } else if (humanChoice === computerChoice) {
+                return "Try again! You've chosen the same optin as the computer"
+            }
+        
+            }
+            
+            
 
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-        computerScore++;
-        return "You lose! Scissors beat paper" 
+            for (let i = 0; i < 5; i++) {
 
-    } else if (humanChoice === "scissors" && computerChoice === "rock") {
-        computerScore++;
-        return "You lose! Rock beats scissors";
+               const humanSelection = getHumanChoice();
+               const computerSelection = getComputerChoice();
+               const roundResult  =  playRound(humanSelection, computerSelection);
+               console.log(roundResult);
 
-    } else if (humanChoice === "scissors" && computerChoice === "paper") {
-        humanScore++;
-        return "You win! Scissors beat paper";
+            }
+
+            if (humanScore > computerScore) {
+                return `You win! your score is ${humanScore}, and computer's is ${computerScore}`
+            } else if (humanScore < computerScore) {
+                return `You lose! your score is ${humanScore}, and computer's is ${computerScore}`
+            } else {
+                return "Draw!"
+            }
+            
+
+        
+    }
+
+
+    
+   
 
     
 
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-        humanScore++;
-        return "You win! Paper beats rock";
 
-    } else if (humanChoice === "rock" && computerChoice === "scissors") {
-        humanScore++;
-        return "You win! Rock beats scissors";
-
-    } else if (humanChoice === computerChoice) {
-        return "Try again! You've chosen the same optin as the computer"
-    }
-
-    }
-
-    
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
 
 
